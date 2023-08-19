@@ -7,7 +7,7 @@
 
 namespace nkg {
 
-    char base32_rfc4648::symbol(alphabet_index_t idx) {
+    char base32_rfc4648::symbol(base32_rfc4648::alphabet_index_t idx) {
         return alphabet[idx];
     }
 
