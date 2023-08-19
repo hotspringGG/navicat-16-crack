@@ -1,11 +1,13 @@
 #include "base32_rfc4648.hpp"
+#include <limits>
+#include <algorithm>
 
 #define NKG_CURRENT_SOURCE_FILE() u8".\\navicat-keygen\\base32_rfc4648.cpp"
 #define NKG_CURRENT_SOURCE_LINE() __LINE__
 
 namespace nkg {
 
-    char base32_rfc4648::symbol(alphabet_index_t idx) {
+    char base32_rfc4648::symbol(base32_rfc4648::alphabet_index_t idx) {
         return alphabet[idx];
     }
 
@@ -15,7 +17,7 @@ namespace nkg {
         } else if ('2' <= c && c <= '7') {
             return c - '2' + 26;
         } else {
-            throw decoding_error(NKG_CURRENT_SOURCE_FILE(), NKG_CURRENT_SOURCE_LINE(), u8"Non-base32 digit is found");
+            throw decoding_error(NKG_CURRENT_SOURCE_FILE(), NKG_CURRENT_SOURCE_LINE(), u8"Non-base32 digit is found.");
         }
     }
 
@@ -64,10 +66,10 @@ namespace nkg {
                     retval.append(1, padding_character);
                     break;
                 default:
-                    __assume(false);
+                    __builtin_unreachable();
             }
         }
-            
+
         return retval;
     }
 

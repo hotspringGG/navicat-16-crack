@@ -2,6 +2,8 @@
 #include <exception>
 #include <string>
 #include <vector>
+#include <utility>
+#include <cstdint>
 
 namespace nkg {
 
@@ -27,10 +29,13 @@ namespace nkg {
         }
 
         exception(std::string_view file, int line, std::string_view message) noexcept :
-            std::exception(),   // don't pass `char*` to `std::exception`, because it is not documented in c++ standard.
-            m_source_line(line),
-            m_source_file(file),
-            m_custom_message(message) {}
+            std::exception(), m_source_line(line), m_source_file(file), m_custom_message(message) {}
+
+        exception(const exception&) noexcept = default;
+        exception(exception&&) noexcept = default;
+
+        exception& operator=(const exception&) noexcept = default;
+        exception& operator=(exception&&) noexcept = default;
 
         [[nodiscard]]
         int source_line() const noexcept {
@@ -47,14 +52,14 @@ namespace nkg {
             return m_custom_message;
         }
 
-        exception& push_hint(std::string_view hint) noexcept {
+        exception&& push_hint(std::string_view hint) noexcept {
             m_hints.emplace_back(hint);
-            return *this;
+            return std::move(*this);
         }
 
-        exception& pop_hint() noexcept {
+        exception&& pop_hint() noexcept {
             m_hints.pop_back();
-            return *this;
+            return std::move(*this);
         }
 
         const std::vector<std::string>& hints() const noexcept {
@@ -80,7 +85,7 @@ namespace nkg {
             trap_then_terminate();
         }
 
-        virtual ~exception() = default;
+        virtual ~exception() override = default;
     };
 
 }
