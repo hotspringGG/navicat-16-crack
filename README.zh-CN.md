@@ -2,12 +2,10 @@
 
 这份repo将会告诉你Navicat是怎么完成离线激活的。
 
-归档的代码位于 [`linux-archived`](https://notabug.org/doublesine/navicat-keygen/src/linux-archived) 分支。归档原因：Navicat进入16.x.x版本，本项目打算进行重构。
-
 当你clone该仓库的时候，请使用 `--single-branch` 选项，以此避免clone到已被归档的分支、以及节省你的时间和磁盘空间。
 
 ```console
-$ git clone -b linux --single-branch https://notabug.org/doublesine/navicat-keygen.git
+$ git clone -b linux --single-branch https://github.com/hotspringGG/navicat-16-crack
 ```
 
 ## 1. 注册机是怎么工作的？
@@ -29,3 +27,5 @@ $ git clone -b linux --single-branch https://notabug.org/doublesine/navicat-keyg
 * dragonflylee
 
 * zenuo
+
+* HotspringDev
